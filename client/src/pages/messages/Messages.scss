@@ -1,0 +1,52 @@
+.messages{
+    display: flex;
+    justify-content: center;
+    padding:0 90px;
+    .container{
+        width: 1400px;
+        padding: 50px 0;
+        .title{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+        }
+        table{
+            width: 100%;
+            .heading{
+                th{
+                    text-align: left;
+                }
+            }
+            .body{
+                height: 80px;
+                td{
+                    padding: 10px;
+                    button{
+                        background-color: #1dbf73;
+                        color: white;
+                        font-size: 17px;
+                        font-weight: 500;
+                        border: none;
+                        padding: 6px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        transition: 0.2s;
+                        &:hover{
+                            background-color: #19a463;
+                        }
+                    }
+                    &:first-child{
+                        font-weight: 500;
+                    }
+                    &:nth-child(2),&:nth-child(3){
+                        color: gray;
+                    }
+                }
+                &.active{
+                    background-color: #1dbf730f;
+                }
+            }
+        }
+    }
+}

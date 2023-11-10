@@ -1,0 +1,44 @@
+.slide{
+    display: flex;
+    justify-content: center;
+    padding: 100px 0;
+    gap:10px;
+    .container{
+        width: 1190px;
+        .popular{
+            color: #404145;
+            font-size: 32px;
+            font-weight: 700;
+            margin: 10px 0 24px;
+            margin-left:20px;
+        }
+        .carousel-initialized{
+            .carousel-track{
+                .carousel-item{
+                    width: 220px;
+                }
+            }
+            .carousel-row{
+                margin:20px;
+            }
+
+        }
+        .carousel-prev,.carousel-next{
+            background-color: rgb(237, 236, 236);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            position: absolute;
+            top:50%;
+            transform: translateY(-50%);
+            margin-top: auto;
+        }
+        .carousel-next{
+            right: 40px;
+        }
+        .carousel-prev{
+            left: 0;
+        }
+        
+    }
+}

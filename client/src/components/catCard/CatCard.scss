@@ -1,0 +1,34 @@
+.catCard{
+    width: 220px;
+    position: relative;
+    height: 320px;
+    color: white;
+    border-radius: 5px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.6)), color-stop(100%,rgba(0,0,0,0)));
+    cursor: pointer;
+    overflow: hidden;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        z-index: -1;
+        
+    }
+    .description{
+        position: absolute;
+        top: 10px;
+        left: 15px;
+        font-weight: 300;
+        z-index: 1;
+    }
+
+    .title{
+        position: absolute;
+        top: 45px;
+        left: 15px;
+        font-weight: 500;
+        font-size: 24px;
+        z-index: 1;
+    }
+}
