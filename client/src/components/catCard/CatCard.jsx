@@ -11,6 +11,7 @@ const CatCard = ({item}) => {
             <span className='title'>{item.title}</span>
         </div>
     </Link>
+    
   )
 }
 
