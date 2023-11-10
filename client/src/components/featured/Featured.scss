@@ -1,0 +1,101 @@
+.featured{
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    background-color: #013914;
+    .container{
+        width: 1400px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .left{
+            transform: translateY(-20%);
+            h1{
+                color: white;
+                font-family:Verdana, Geneva, Tahoma, sans-serif;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                width: 650px;
+                font-size: 40px;
+                cursor: default;
+                i{
+                    font-weight: 300;
+                }
+            }
+            .search{
+                display: flex;
+                height: 46px;
+                align-items: center;
+                justify-content: space-between;
+                border-radius: 5px;
+                background-color: white;
+                margin-bottom: 24px;
+                input{
+                    width: 585px;
+                    height: 100%;
+                    border:none;
+                    outline: none;
+                    padding: 12px 2px 12px 16px;
+                    border-radius: 4px 0 0 4px;
+                    color: #404145;
+                    font-weight: 500;
+                    line-height: 24px;
+                }
+                button{
+                    height: 100%;
+                    background-color: #1dbf73;
+                    outline: none;
+                    border: none;
+                    border-radius: 0 4px 4px 0;
+                    padding: 12px 24px;
+                    color: white;
+                    text-align: center;
+                    cursor: pointer;
+                    transition: 0.2s;
+                    line-height: 16px;
+                    &:hover{
+                        background-color: #19a463;
+                    }
+                }
+            }
+            .popular{
+                color: white;
+                display: flex;
+                gap: 12px;
+                align-items: center;
+                span{
+                    cursor: default;
+                }
+                button{ 
+                    color: white;
+                    background-color: transparent;
+                    border: 1px solid white;
+                    outline: none;
+                    border-radius: 40px;
+                    padding: 0 12px;
+                    line-height: 24px;
+                    font-size: 12px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                    transition: 0.3s;
+                    &:hover{
+                        background-color: white;
+                        color: #404145;
+                    }
+                }
+
+            }
+        }
+        .right{
+            height: 100%;
+            img{
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
