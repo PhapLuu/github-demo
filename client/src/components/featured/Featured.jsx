@@ -22,7 +22,7 @@ const Featured = () => {
                 </div>
             </div>
             <div className='right'>
-                <img src='https://i.pinimg.com/564x/b4/3a/89/b43a892e3f68c50a5b7ce996aa41a1af.jpg'/>
+                <img src='https://www-uploads.scaleway.com/Design_Header_Illustration_4c0436b223.webp'/>
             </div>
         </div>
     </div>
