@@ -5,11 +5,14 @@ import multer from 'multer';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import db from './configs/db/index.js'
-dotenv.config();
 
 const app = express();
 const port = 3000;
 
+//Use dotenv lib
+dotenv.config();
+
+//Use libraries
 app.use(morgan('dev'));
 app.use(cors());
 
