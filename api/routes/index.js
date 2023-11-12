@@ -4,7 +4,10 @@ import messageRouter from './message.js';
 import orderRouter from './order.js';
 import reviewRouter from './review.js';
 import conversationRouter from './conversation.js'
+import authRouter from './auth.js'
+
 function route(app) {
+    app.use('/api/auth', authRouter)
     app.use('/api/users', userRouter);
     app.use('/api/gigs', gigRouter);
     app.use('/api/orders', orderRouter);

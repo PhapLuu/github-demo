@@ -9,6 +9,8 @@ import route from './routes/index.js';
 
 const app = express();
 const port = 3000;
+//Register
+app.use(express.json());
 
 //Use dotenv lib
 dotenv.config();
