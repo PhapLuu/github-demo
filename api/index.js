@@ -4,7 +4,8 @@ import morgan from 'morgan';
 import multer from 'multer';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import db from './configs/db/index.js'
+import db from './configs/db/index.js';
+import route from './routes/index.js';
 
 const app = express();
 const port = 3000;
@@ -16,6 +17,8 @@ dotenv.config();
 app.use(morgan('dev'));
 app.use(cors());
 
+//Route init
+route(app);
 //Connect to DB
 db.connect();
 app.listen(port, () =>{
