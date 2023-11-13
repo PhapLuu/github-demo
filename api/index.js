@@ -6,11 +6,13 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import db from './configs/db/index.js';
 import route from './routes/index.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const port = 3000;
-//Register
+//MiddleWare
 app.use(express.json());
+app.use(cookieParser());
 
 //Use dotenv lib
 dotenv.config();
