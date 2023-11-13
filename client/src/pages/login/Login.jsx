@@ -40,8 +40,8 @@ const Login = () => {
             </div>
             <div className='addition'>
               <div className='remember'>
-                <input type='checkbox'/>
-                <span>Remember me</span>
+                <input id='rememberCheckbox' type='checkbox'/>
+                <label htmlFor='rememberCheckbox'>Remember me</label>
               </div>
               <div className='forgot'>Forgot password</div>
             </div>
