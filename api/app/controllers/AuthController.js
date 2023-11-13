@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import createError from "../../utils/createError.js";
 
 class AuthController {
+  
   register = async (req, res, next) => {
     try {
       const hashedPassword = bcrypt.hashSync(req.body.password, 5);
@@ -48,7 +49,13 @@ class AuthController {
       next(error);
     }
   };
-  logout = async (req, res) => {};
+
+  logout = async (req, res) => {
+    res.clearCookie("accessToken",{
+      sameSite:"none",
+      secure:true,
+    }).status(200).send("User has been logged out.");
+  };
 }
 
 export default new AuthController();
