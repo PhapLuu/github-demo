@@ -13,6 +13,12 @@ const port = 3000;
 //MiddleWare
 app.use(express.json());
 app.use(cookieParser());
+app.use((error, req, res, next)=> {
+    const errorStatus = error.status || 500;
+    const errorMessage = error.message || "Something went wrong!";
+
+    return res.status(errorStatus).send(errorMessage);
+})
 
 //Use dotenv lib
 dotenv.config();
