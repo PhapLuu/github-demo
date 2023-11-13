@@ -42,7 +42,7 @@
                     color: #6a6b6e;
                     font-weight: 500;
                     font-size: 14px;
-                    margin-bottom: 30px;
+                    margin-bottom: 40px;
                     cursor: default;
                 }
                 .form-group{
@@ -67,6 +67,12 @@
                             color: #101727;
                         }
                     }
+                    i{
+                        color: #101727;
+                        position: absolute;
+                        right: 0;
+                        cursor: default;
+                    }
                 }
                 .addition{
                     display: flex;
@@ -89,8 +95,10 @@
                     }
                     .forgot{
                         font-weight: 600;
-                        text-decoration: underline;
                         cursor: pointer;
+                        &:hover{
+                            text-decoration: underline;
+                        }
                     }
                 }
                 button{
@@ -114,6 +122,10 @@
                         color: #101727;
                         font-size: 16px;
                         font-weight: 600;
+                        cursor: pointer;
+                        &:hover{
+                            text-decoration: underline;
+                        }
                     }
                 }
             }

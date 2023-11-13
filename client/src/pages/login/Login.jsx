@@ -12,7 +12,7 @@ const Login = () => {
           </div>
           <form>
             <h1 className='loginLabel'>Login</h1>
-            <div className='welcome'>Welcome back! Please enter your details</div>
+            <div className='welcome'>Welcome back! Please enter your details.</div>
             <div className='form-group'>
               <input
                 type='text'
@@ -22,6 +22,7 @@ const Login = () => {
                 placeholder=" "
               />
               <label htmlFor='usernameInput'>Username</label>
+              <i class="fa-solid fa-envelope"></i>
             </div>
 
             <div className='form-group'>
@@ -33,6 +34,8 @@ const Login = () => {
                 placeholder=" "
               />
               <label htmlFor='passwordInput'>Password</label>
+              <i className="fa-solid fa-lock"></i>
+              
             </div>
             <div className='addition'>
               <div className='remember'>
@@ -53,6 +56,10 @@ const Login = () => {
 
         <div className='right'>
           <img src='../../imgs/LoginImage.png'/>
+        </div>
+
+        <div className='Register'>
+
         </div>
       </div>
     </div>
