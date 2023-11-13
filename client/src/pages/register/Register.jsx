@@ -58,8 +58,8 @@ const Register = () => {
             </div>
 
             <div className="notice">
-              <input type="checkbox"/>
-              <span>I agree to the </span>
+              <input id="serviceCheckbox" type="checkbox"/>
+              <label htmlFor="serviceCheckbox">I agree to the </label>
               <span className="services">
                 Terms of Services & Policies
               </span>

@@ -56,12 +56,14 @@
                 display: flex;
                 align-items: center;
                 font-size: 14px;
-                cursor: default;
                 input{
                     width: 15px;
                     height: 15px;
                     margin-right: 12px;
                     accent-color: #101727;
+                    cursor: pointer;
+                }
+                label{
                     cursor: pointer;
                 }
                 .services{
