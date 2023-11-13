@@ -39,7 +39,10 @@ const Navbar = () => {
                 <span>Explore</span>
                 <span>English</span>
                 { !(currentUser?.isSeller) && <span>Become a seller</span>}
-                <span>Sign in</span>
+                
+                <Link className='link' to='/login'>
+                    <span>Sign in</span>
+                </Link>
                 { !currentUser && <button>Join</button>}
                 
                 { currentUser && (

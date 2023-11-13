@@ -1,0 +1,107 @@
+.register{
+    background-color: #e6e7eb;
+    padding: 40px 220px;
+    color: #101727;
+    overflow: hidden;
+    .container{
+        background-color: white;
+        display: flex;
+        height: 627px;
+        border-radius: 15px;
+        overflow: hidden;
+        .left{
+            width: 50%;
+            img{
+                width: 100%;
+            }
+        }
+        .right{
+            flex: 1;
+            padding: 50px;
+            h1{
+                text-align: center;
+                margin: 0 0 30px 0;
+                cursor: default;
+            }
+            .lightInfo, .importantInfo, .password{
+                display: flex;
+                gap: 20px;
+                .form-group{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                    margin-bottom: 20px;
+                    label{
+                        font-weight: 600;
+                        font-size: 16px;
+                    }
+                    input{
+                        padding: 10px 8px;
+                        border: 2px solid #9e9fa4;
+                        border-radius: 5px;
+                        outline: none;
+                        font-size: 15px;
+
+                    }
+                }
+            }
+            .password{
+                margin-top: 20px;
+                flex-direction: column;
+                .form-group{
+                    margin-bottom: 0px;
+                }
+            }
+            .notice{
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                cursor: default;
+                input{
+                    width: 15px;
+                    height: 15px;
+                    margin-right: 12px;
+                    accent-color: #101727;
+                    cursor: pointer;
+                }
+                .services{
+                    font-weight: 600;
+                    margin-left: 4px;
+                    cursor: pointer;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+            button{
+                height: 40px;
+                border: none;
+                outline: none;
+                background-color: #101727;
+                color: white;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: 0.3s;
+                &:hover{
+                    background-color: #35363b;
+                }
+            }
+            .addition{
+                font-size: 16px;
+                cursor: default;
+                display: flex;
+                gap:12px;
+                justify-content: center;
+                align-items: center;
+                .loginLink{
+                    font-weight: 600;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+            
+            
+        }
+    }
+}

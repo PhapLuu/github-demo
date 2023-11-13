@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Login.scss"
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
@@ -22,7 +23,7 @@ const Login = () => {
                 placeholder=" "
               />
               <label htmlFor='usernameInput'>Username</label>
-              <i class="fa-solid fa-envelope"></i>
+              <i className="fa-solid fa-user"></i>
             </div>
 
             <div className='form-group'>
@@ -47,19 +48,19 @@ const Login = () => {
 
             <button type='submit'>Login</button>
 
-            <div className='register'>
+            <div className='registerLink'>
               <span>Don't have an account?</span>
-              <span className='signUp'>Sign up for free</span>
+              {
+                <Link className='link' to='/register'>
+                  <span className='signUp'>Sign up for free</span>
+                </Link>
+              }
             </div>
           </form>
         </div>
 
         <div className='right'>
           <img src='../../imgs/LoginImage.png'/>
-        </div>
-
-        <div className='Register'>
-
         </div>
       </div>
     </div>
