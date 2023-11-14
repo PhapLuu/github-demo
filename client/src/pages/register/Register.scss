@@ -17,31 +17,40 @@
         }
         .right{
             flex: 1;
-            padding: 50px;
+            padding: 40px;
             h1{
                 text-align: center;
-                margin: 0 0 30px 0;
+                margin: 0 0 50px 0;
                 cursor: default;
             }
             .lightInfo, .importantInfo, .password{
                 display: flex;
                 gap: 20px;
                 .form-group{
-                    display: flex;
-                    flex-direction: column;
+                    position: relative;
                     gap: 6px;
-                    margin-bottom: 20px;
+                    margin-bottom: 40px;
+                    border-bottom: 1px solid #6a6b6e;
                     label{
-                        font-weight: 600;
-                        font-size: 16px;
+                        font-size: 18px;
+                        position: absolute;
+                        color: #6a6b6e;
+                        top:-3px;
+                        left: 0;
+                        transition:all 0.25s;
+                        cursor: text;
                     }
                     input{
-                        padding: 10px 8px;
-                        border: 2px solid #9e9fa4;
-                        border-radius: 5px;
-                        outline: none;
                         font-size: 15px;
-
+                        width: 100%;
+                        border: none;
+                        outline: none;
+                        &:not(:placeholder-shown) + label,
+                        &:focus + label{
+                            top: -25px;
+                            color: #101727;
+                            cursor: default;
+                        }
                     }
                 }
             }
@@ -49,17 +58,18 @@
                 margin-top: 20px;
                 flex-direction: column;
                 .form-group{
-                    margin-bottom: 0px;
+                    margin-bottom: 20px;
                 }
             }
             .notice{
+                margin-top: -25px;
                 display: flex;
                 align-items: center;
                 font-size: 14px;
                 input{
                     width: 15px;
                     height: 15px;
-                    margin-right: 12px;
+                    margin-right: 6px;
                     accent-color: #101727;
                     cursor: pointer;
                 }
@@ -76,6 +86,7 @@
                 }
             }
             button{
+                margin-top: 40px;
                 height: 40px;
                 border: none;
                 outline: none;

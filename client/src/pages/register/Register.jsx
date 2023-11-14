@@ -13,48 +13,50 @@ const Register = () => {
           <h1>Register</h1>
           <div className="lightInfo">
             <div className="form-group">
+              <input type="text" id="fullnameInput" name="fullname" required placeholder=" " />
               <label htmlFor="fullnameInput">Full name</label>
-              <input type="text" id="fullnameInput" name="fullname" required placeholder="John Doe" />
             </div>
             <div className="form-group">
-              <label htmlFor="phoneNumberInput">Contact Number</label>
               <input
                 type="text"
                 id="phoneNumberInput"
                 name="phoneNumber"
-                placeholder="754774140"
+                placeholder=" "
                 required
               />
+              <label htmlFor="phoneNumberInput">Contact Number</label>
             </div>
           </div>
           <div className="importantInfo">
             <div className="form-group">
+              <input type="text" id="emailInput" name="email" required placeholder=" " />
               <label htmlFor="emailInput">Email Address</label>
-              <input type="text" id="emailInput" name="email" required placeholder="johnd@gmail.com" />
             </div>
             <div className="form-group">
+              <input type="text" id="usernameInput" name="username" required placeholder=" " />
               <label htmlFor="usernameInput">Username</label>
-              <input type="text" id="usernameInput" name="username" required placeholder="JohnD123" />
             </div>
           </div>
           <div className="password">
             <div className="form-group">
-              <label htmlFor="passwordInput">Password</label>
               <input
                 type="password"
                 id="passwordInput"
                 name="password"
+                placeholder=" "
                 required
               />
+              <label htmlFor="passwordInput">Password</label>
             </div>
             <div className="form-group">
-              <label htmlFor="confirmPasswordInput">Confirm Password</label>
               <input
                 type="password"
                 id="confirmPasswordInput"
                 name="confirmPassword"
                 required
+                placeholder=" "
               />
+              <label htmlFor="confirmPasswordInput">Confirm Password</label>
             </div>
 
             <div className="notice">
