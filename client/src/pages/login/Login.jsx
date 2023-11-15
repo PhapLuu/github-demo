@@ -1,8 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Login.scss"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import newRequest from '../../utils/newRequest';
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate()
+  const handleSubmit = async(e, req, res)=> {
+    e.preventDefault();
+    try {
+      const res = await newRequest.post('/auth/login',{
+        username,
+        password
+      })
+      localStorage.setItem('currentUser', JSON.stringify(res.data))
+      navigate('/');
+    } catch (error) {
+      setError(error.response.data)
+    }
+
+  }
+
   return (
     <div className='login'>
       <div className='container'>
@@ -11,7 +32,7 @@ const Login = () => {
             <span>Logo.</span>
             <span>Untitled UI</span>
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <h1 className='loginLabel'>Login</h1>
             <div className='welcome'>Welcome back! Please enter your details.</div>
             <div className='form-group'>
@@ -21,6 +42,7 @@ const Login = () => {
                 name='username'
                 required 
                 placeholder=" "
+                onChange={(e) => setUsername(e.target.value)}
               />
               <label htmlFor='usernameInput'>Username</label>
               <i className="fa-solid fa-user"></i>
@@ -33,6 +55,7 @@ const Login = () => {
                 name='password'
                 required 
                 placeholder=" "
+                onChange={(e) => setPassword(e.target.value)}
               />
               <label htmlFor='passwordInput'>Password</label>
               <i className="fa-solid fa-lock"></i>
@@ -47,6 +70,7 @@ const Login = () => {
             </div>
 
             <button type='submit'>Login</button>
+            {error && error}
 
             <div className='registerLink'>
               <span>Don't have an account?</span>

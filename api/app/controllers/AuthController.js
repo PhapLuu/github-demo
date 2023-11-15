@@ -38,13 +38,13 @@ class AuthController {
         process.env.JWT_KEY
       );
 
-      const { password, ...others } = user._doc;
+      const { username, ...others } = user._doc;
       res
         .cookie("accessToken", token, {
           httpOnly: true,
         })
         .status(200)
-        .send(others);
+        .send(username);
     } catch (error) {
       next(error);
     }
