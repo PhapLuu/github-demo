@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import "./Navbar.scss"
 import { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import newRequest from '../../utils/newRequest.js';
 
 const Navbar = () => {
     const [activeAddition,setActiveAddition] = useState(false)
     const [active, setActive] = useState(false)
     const [open, setOpen] = useState(false)
     const {pathname} = useLocation()
+    const defaultImage = 'https://i.pinimg.com/736x/63/53/d9/6353d9fff14cc31af369dd0254fd8c97.jpg'
+    const navigate = useNavigate();
 
     const isActive = () =>{
         window.scrollY > 0 ? setActive(true) : setActive(false)
@@ -19,12 +22,18 @@ const Navbar = () => {
             window.removeEventListener('scroll', isActive);
         }
     },[])
-    
-    const currentUser = {
-        id: 1,
-        username: 'John Doe',
-        isSeller: true,
+
+    const handleLogout =  async()=>{
+        try {
+            const res = await newRequest.post('/auth/logout');
+            localStorage.setItem('currentUser', null);
+            navigate('/')
+        } catch (error) {
+            
+        }
     }
+    
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   return (
     <div className={(active || pathname!=='/') ? 'navbar active' : 'navbar'}>
         <div className='container'>
@@ -40,14 +49,14 @@ const Navbar = () => {
                 <span>English</span>
                 { !(currentUser?.isSeller) && <span>Become a seller</span>}
                 
-                <Link className='link' to='/login'>
+                { !currentUser && <Link className='link' to='/login'>
                     <span>Sign in</span>
-                </Link>
+                </Link>}
                 { !currentUser && <button>Join</button>}
                 
                 { currentUser && (
                     <div className='user' onClick={() => setOpen(!open)}>
-                        <img src='https://i.pinimg.com/564x/b7/0a/f6/b70af66aee1fb2b27a16477b5b5472a7.jpg'/>
+                        <img src={currentUser.img || defaultImage}/>
                         <span>{currentUser?.username}</span>
                         { open && (
                         <div className='options'>
@@ -68,7 +77,7 @@ const Navbar = () => {
                             <Link className='link' to='messages'>
                                 <span>Messages</span>
                             </Link>
-                            <Link className='link' to='logout'>
+                            <Link className='link' onClick={handleLogout}>
                                 <span>Logout</span>
                             </Link>
                         </div>
