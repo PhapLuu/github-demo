@@ -129,9 +129,9 @@ const Gig = () => {
               </p>
               <div className="helpful">
                 <span>Helpful?</span>
-                <i class="fa-regular fa-thumbs-up"></i>
+                <i className="fa-regular fa-thumbs-up"></i>
                 <span>Yes</span>
-                <i class="fa-regular fa-thumbs-down"></i>
+                <i className="fa-regular fa-thumbs-down"></i>
                 <span>No?</span>
               </div>
             </div>
@@ -167,9 +167,9 @@ const Gig = () => {
               </p>
               <div className="helpful">
                 <span>Helpful?</span>
-                <i class="fa-regular fa-thumbs-up"></i>
+                <i className="fa-regular fa-thumbs-up"></i>
                 <span>Yes</span>
-                <i class="fa-regular fa-thumbs-down"></i>
+                <i className="fa-regular fa-thumbs-down"></i>
                 <span>No?</span>
               </div>
             </div>
@@ -204,9 +204,9 @@ const Gig = () => {
               </p>
               <div className="helpful">
                 <span>Helpful?</span>
-                <i class="fa-regular fa-thumbs-up"></i>
+                <i className="fa-regular fa-thumbs-up"></i>
                 <span>Yes</span>
-                <i class="fa-regular fa-thumbs-down"></i>
+                <i className="fa-regular fa-thumbs-down"></i>
                 <span>No?</span>
               </div>
             </div>
@@ -225,7 +225,7 @@ const Gig = () => {
           </p>
           <div className="details">
             <div className="item">
-              <i class="fa-regular fa-clock"></i>
+              <i className="fa-regular fa-clock"></i>
               <span>2 days Delivery</span>
             </div>
             <div className="item">
@@ -236,19 +236,19 @@ const Gig = () => {
 
           <div className="features">
             <div className="item">
-              <i class="fa-solid fa-check"></i>
+              <i className="fa-solid fa-check"></i>
               <span>Prompt writing</span>
             </div>
             <div className="item">
-              <i class="fa-solid fa-check"></i>
+              <i className="fa-solid fa-check"></i>
               <span>Artwork delivery</span>
             </div>
             <div className="item">
-              <i class="fa-solid fa-check"></i>
+              <i className="fa-solid fa-check"></i>
               <span>Image upscaling</span>
             </div>
             <div className="item">
-              <i class="fa-solid fa-check"></i>
+              <i className="fa-solid fa-check"></i>
               <span>Additional design </span>
             </div>
           </div>

@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import "./Gigs.scss"
 import GigCard from '../../components/gigCard/GigCard'
 import {gigs} from '../../data'
 import { Link } from 'react-router-dom'
+import newRequest from '../../utils/newRequest'
+import { useQuery } from 'react-query'
 
 const Gigs = () => {
   const [sort, setSort] = useState('sales')
   const [open, setOpen] = useState(false)
+  const minRef = useRef();
+  const maxRef = useRef();
 
+  const { isLoading, error, data } = useQuery('repoData', () =>
+    newRequest('/gigs')
+  )
+  console.log(data)
   const reSort = (type) => {
     setSort(type)
     setOpen(false)
@@ -34,8 +42,8 @@ const Gigs = () => {
         <div className='menu'>
           <div className='left'>
             <span>Budged</span>
-            <input type='text' placeholder='min'/>
-            <input type='text' placeholder='max'/>
+            <input type='text' placeholder='min' ref={minRef}/>
+            <input type='text' placeholder='max' ref={maxRef}/>
             <button>Apply</button>
           </div>
           <div className='right'>
@@ -54,7 +62,11 @@ const Gigs = () => {
           </div>
         </div>
         <div className='cards'>
-              {gigs.map(gig => (
+              { isLoading
+              ? "loading"
+              : error
+              ? "Something went wrong!"
+              : gigs.map(gig => (
                 <GigCard key={gig.id} item={gig}/>
               ))}
         </div>

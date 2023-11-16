@@ -10,6 +10,10 @@ import Register from './pages/register/Register'
 import MyGigs from './pages/myGigs/MyGigs'
 import Orders from './pages/orders/Orders'
 import Add from './pages/add/Add'
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+
+const queryClient = new QueryClient()
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -20,9 +24,11 @@ function App() {
   const Layout = () =>{
     return (
       <div className='app'>
-        <Navbar/>
-        <Outlet/>
-        <Footer/>
+        <QueryClientProvider client={queryClient}>
+          <Navbar/>
+          <Outlet/>
+          <Footer/>
+        </QueryClientProvider>
       </div>
     )
   }

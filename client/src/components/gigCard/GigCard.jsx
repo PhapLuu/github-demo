@@ -20,7 +20,7 @@ const GigCard = ({item}) => {
             </div>
             <hr/>
             <div className='details'>
-                <i class="fa-regular fa-heart"></i>
+                <i className="fa-regular fa-heart"></i>
                 <div className='price'>
                     <span>Starting At</span>
                     <h2>${item.price}</h2>
