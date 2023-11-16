@@ -34,6 +34,15 @@ class GigController{
         }
     };
     getGigs = async(req, res, next) =>{
+        const q = req.query;
+        const filters = {
+            ...(q.userId && { userId: q.userId }),
+            ...(q.cat && {cat: q.cat}),
+            ...((q.min || q.max) && {
+                price: { ...(q.min && {$gt: q.min} ), ...(q.max && {$lt: q.max})}
+            }),
+            ...(q.search && { title:{ $regex: q.search, $option: "i" } }),
+        };
         try {
             const gigs = await Gig.find()
             res.status(200).send(gigs);
