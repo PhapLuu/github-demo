@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import newRequest from "../../utils/newRequest";
 import axios from "axios";
 
-
 const Register = () => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
