@@ -9,7 +9,10 @@ const Add = () => {
         <div className='sections'>
           <div className='left'>
             <label htmlFor=''>Title</label>
-            <input type='text' placeholder='e.g. I will do sth'/>
+            <input 
+              type='text' 
+              placeholder='e.g. I will do sth'
+            />
             <label htmlFor=''>Category</label>
             <select name='cats' id='cats'>
               <option value='design'>Design</option>
