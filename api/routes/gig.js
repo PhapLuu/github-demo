@@ -9,5 +9,4 @@ router.delete('/:id', verifyToken, GigController.delete);
 router.get('/single/:id', verifyToken, GigController.getGig);
 router.get('/', verifyToken, GigController.getGigs);
 
-
 export default router;

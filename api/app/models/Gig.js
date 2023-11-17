@@ -14,28 +14,8 @@ const Gig = new Schema({
         type: String,
         required: true,
     },
-    cat:{
-        type:String,
-        required: true,
-    },
     price:{
         type: Number,
-        required: true,
-    },
-    userAvatar:{
-        type: String,
-        required: true,
-    },
-    cover:{
-        type: String,
-        required: true,
-    },
-    images:{
-        type: [String],
-        required: false,
-    },
-    shortTitle:{
-        type: String,
         required: true,
     },
     shortDesc:{
@@ -49,6 +29,26 @@ const Gig = new Schema({
     revisionNumber:{
         type: Number,
         required: true,
+    },
+    cat:{
+        type:String,
+        required: false,
+    },
+    userAvatar:{
+        type: String,
+        required: false,
+    },
+    cover:{
+        type: String,
+        required: false,
+    },
+    images:{
+        type: [String],
+        required: false,
+    },
+    shortTitle:{
+        type: String,
+        required: false,
     },
     features:{
         type: [String],
@@ -72,3 +72,4 @@ const Gig = new Schema({
 })
 
 export default mongoose.model('Gig', Gig);
+

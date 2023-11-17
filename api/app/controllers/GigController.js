@@ -3,9 +3,9 @@ import createError from '../../utils/createError.js';
 
 class GigController{
     create = async(req, res, next)=> {
-        if(!req.isSeller) 
+        console.log(req.body.isSeller)
+        if(req.body.isSeller == false) 
             return next(createError(403, "Only sellers can create a gig "));
-
         const newGig = new Gig({
             userId: req.userId,
             ...req.body,
@@ -15,11 +15,8 @@ class GigController{
             const savedGig = await newGig.save();
             res.status(201).json(savedGig)
         } catch (error){
-            next(err);
+            next(error);
         }
-    };
-    update = async(req, res, next) => {
-
     };
     delete = async(req, res, next) => {
         try {
