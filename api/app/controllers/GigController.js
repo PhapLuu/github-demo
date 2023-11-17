@@ -3,7 +3,6 @@ import createError from '../../utils/createError.js';
 
 class GigController{
     create = async(req, res, next)=> {
-        console.log(req.body.isSeller)
         if(req.body.isSeller == false) 
             return next(createError(403, "Only sellers can create a gig "));
         const newGig = new Gig({
@@ -38,10 +37,10 @@ class GigController{
             ...((q.min || q.max) && {
                 price: { ...(q.min && {$gt: q.min} ), ...(q.max && {$lt: q.max})}
             }),
-            ...(q.search && { title:{ $regex: q.search, $option: "i" } }),
+            ...(q.search && { title:{ $regex: q.search, $options: "i" } }),
         };
         try {
-            const gigs = await Gig.find()
+            const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
             res.status(200).send(gigs);
         } catch (error) {
             next(error)

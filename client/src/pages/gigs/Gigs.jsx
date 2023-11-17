@@ -1,8 +1,7 @@
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import "./Gigs.scss"
 import GigCard from '../../components/gigCard/GigCard'
-import {gigs} from '../../data'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import newRequest from '../../utils/newRequest'
 import { useQuery } from 'react-query'
 
@@ -12,14 +11,24 @@ const Gigs = () => {
   const minRef = useRef();
   const maxRef = useRef();
 
+  const {search} = useLocation();
+
   const { isLoading, error, data } = useQuery('repoData', () =>
-    newRequest('/gigs')
-  )
+  newRequest.get(`/gigs${search}`)
+    .then((res) => {
+      return res.data
+    }),
+  { enabled: true, refetchOnWindowFocus: false, refetchOnMount: false, refetchOnReconnect: false }
+);
   console.log(data)
-  const reSort = (type) => {
-    setSort(type)
-    setOpen(false)
-  }
+  // const reSort = (type) => {
+  //   setSort(type)
+  //   setOpen(false)
+  // }
+  const reSort = useCallback((type) => {
+    setSort(type);
+    setOpen(false);
+  }, [setSort, setOpen]);
 
   return (
     <div className='gigs'>
@@ -63,11 +72,11 @@ const Gigs = () => {
         </div>
         <div className='cards'>
               { isLoading
-              ? "loading"
-              : error
-              ? "Something went wrong!"
-              : gigs.map(gig => (
-                <GigCard key={gig.id} item={gig}/>
+                ? "loading"
+                : error
+                ? "Something went wrong!"
+                : data.map((gig) => (
+                  <GigCard key={gig._id} item={gig}/>
               ))}
         </div>
       </div>
