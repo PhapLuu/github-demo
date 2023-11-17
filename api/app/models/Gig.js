@@ -41,6 +41,7 @@ const Gig = new Schema({
     cover:{
         type: String,
         required: false,
+        default:'',
     },
     images:{
         type: [String],

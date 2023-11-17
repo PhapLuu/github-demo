@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import "./Gigs.scss"
 import GigCard from '../../components/gigCard/GigCard'
 import { Link, useLocation } from 'react-router-dom'
@@ -13,14 +13,13 @@ const Gigs = () => {
 
   const {search} = useLocation();
 
-  const { isLoading, error, data } = useQuery('repoData', () =>
-  newRequest.get(`/gigs${search}`)
+  const { isLoading, error, data, refetch } = useQuery('gigs', () =>
+  newRequest.get(`/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`)
     .then((res) => {
       return res.data
     }),
   { enabled: true, refetchOnWindowFocus: false, refetchOnMount: false, refetchOnReconnect: false }
 );
-  console.log(data)
   // const reSort = (type) => {
   //   setSort(type)
   //   setOpen(false)
@@ -29,6 +28,14 @@ const Gigs = () => {
     setSort(type);
     setOpen(false);
   }, [setSort, setOpen]);
+
+  useEffect(() => {
+    refetch();
+  }, [sort]);
+
+  const apply = () => {
+    refetch();
+  };
 
   return (
     <div className='gigs'>
@@ -51,9 +58,9 @@ const Gigs = () => {
         <div className='menu'>
           <div className='left'>
             <span>Budged</span>
-            <input type='text' placeholder='min' ref={minRef}/>
-            <input type='text' placeholder='max' ref={maxRef}/>
-            <button>Apply</button>
+            <input type='number' placeholder='min' ref={minRef}/>
+            <input type='number' placeholder='max' ref={maxRef}/>
+            <button onClick={apply}>Apply</button>
           </div>
           <div className='right'>
             <span className='sortBy'>SortBy:</span>
