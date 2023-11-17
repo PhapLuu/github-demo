@@ -41,7 +41,7 @@ const GigCard = ({ item }) => {
           <p> {item.title} </p>
           <div className="star">
             <i className="fa-solid fa-star"></i>
-            <span>{Math.round(item.totalStar / item.starNumber) || ""}</span>
+            <span>{Number((item.totalStars / item.starNumber) || "").toFixed(1)}</span>
           </div>
         </div>
         <hr />
