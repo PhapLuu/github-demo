@@ -1,10 +1,11 @@
 import React from "react";
 import "./Reviews.scss";
 import Review from "../review/Review";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import newRequest from "../../utils/newRequest";
 
 const Reviews = ({ gigId }) => {
+  const queryClient = useQueryClient();
   const { isLoading, error, data } = useQuery(
     "reviews",
     () =>
@@ -19,8 +20,23 @@ const Reviews = ({ gigId }) => {
     }
   );
 
-  const handleSubmit = (e) => {
+  const mutation = useMutation({
+    mutationFn: (review) => {
+      return newRequest.post('/reviews', review)
+    },
+    onSuccess:()=>{
+      queryClient.invalidateQueries(["reviews"])
+    }
+  })
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const desc = e.target[0].value;
+    const star = e.target[1].value;
+    if(!desc){
+      return
+    }
+    mutation.mutate({gigId, desc, star})
   }
 
   return (
@@ -36,7 +52,7 @@ const Reviews = ({ gigId }) => {
       ))}
       <div className="add">
         <h3>Add a review</h3>
-        <form action="" onSubmit={handleSubmit}>
+        <form className="addForm" action="" onSubmit={handleSubmit}>
           <input type="text" placeholder="write your opinion"/>
           <select>
             <option value={1}>1</option>

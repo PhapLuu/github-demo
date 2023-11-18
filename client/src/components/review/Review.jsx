@@ -6,7 +6,7 @@ import newRequest from "../../utils/newRequest";
 const Review = ({ review }) => {
   const defaultImage = 'https://i.pinimg.com/736x/63/53/d9/6353d9fff14cc31af369dd0254fd8c97.jpg'
   const { isLoading, error, data } = useQuery(
-    "reviewUser",
+    `${review.userId}`,
     () =>
       newRequest.get(`/users/${review.userId}`).then((res) => {
         return res.data;

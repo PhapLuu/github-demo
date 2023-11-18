@@ -5,8 +5,8 @@ import Gig from '../models/Gig.js';
 class ReviewController{
 
     create = async(req, res, next) => {
-        if(req.isSeller) 
-            return next(createError('403', "Seller can't create review!"))
+        // if(req.isSeller) 
+        //     return next(createError('403', "Seller can't create review!"))
         const review = new Review({
             userId: req.userId,
             gigId: req.body.gigId,
