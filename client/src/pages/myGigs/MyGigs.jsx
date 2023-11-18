@@ -1,11 +1,38 @@
 import React from 'react'
 import "./MyGigs.scss"
 import { Link} from 'react-router-dom'
+import getCurrentUser from '../../utils/getCurrentUser'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+import newRequest from '../../utils/newRequest'
 
 const MyGigs = () => {
+  const currentUser = getCurrentUser()
+  const queryClient = useQueryClient();
+  const { isLoading, error, data } = useQuery(
+    "myGigs",
+    () =>
+      newRequest.get(`/gigs?userId=${currentUser._id}`).then((res) => {
+        return res.data;
+      }),
+    
+  );
+
+  const mutation = useMutation({
+    mutationFn: (id) => {
+      return newRequest.delete(`/gigs/${id}`)
+    },
+    onSuccess:()=>{
+      queryClient.invalidateQueries(["myGigs"])
+    }
+  })
+
+  const handleDelete = (id) =>{
+    mutation.mutate(id)
+  };
+
   return (
     <div className='myGigs'>
-      <div className='container'>
+      {isLoading ? "loading": error ? "error" :(<div className='container'>
         <div className='title'>
           <h1>Gigs</h1>
           <Link to='/add'>
@@ -20,58 +47,22 @@ const MyGigs = () => {
             <th>Sales</th>
             <th>Action</th>
           </tr>
-          <tr>
-            <td>
-              <img src='https://i.pinimg.com/736x/96/be/e1/96bee128e75d3ce04956750517f46a3f.jpg'/>
-            </td>
-            <td>Gig1</td>
-            <td>$88</td>
-            <td>123</td>
-            <td><i className="fa-solid fa-trash"></i></td>
-          </tr>
+          {
+            data.map(gig => (
+            <tr key={gig._id}>
+              <td>
+                <img src={gig.cover} />
+              </td>
+              <td>{gig.title}</td>
+              <td>${gig.price}</td>
+              <td>{gig.sales}</td>
+              <td><i onClick={() => handleDelete(gig._id)} className="fa-solid fa-trash"></i></td>
+            </tr>
 
-          <tr>
-            <td>
-              <img src='https://i.pinimg.com/736x/96/be/e1/96bee128e75d3ce04956750517f46a3f.jpg'/>
-            </td>
-            <td>Gig1</td>
-            <td>$88</td>
-            <td>123</td>
-            <td><i className="fa-solid fa-trash"></i></td>
-          </tr>
-
-          <tr>
-            <td>
-              <img src='https://i.pinimg.com/736x/96/be/e1/96bee128e75d3ce04956750517f46a3f.jpg'/>
-            </td>
-            <td>Gig1</td>
-            <td>$88</td>
-            <td>123</td>
-            <td><i className="fa-solid fa-trash"></i></td>
-          </tr>
-
-          <tr>
-            <td>
-              <img src='https://i.pinimg.com/736x/96/be/e1/96bee128e75d3ce04956750517f46a3f.jpg'/>
-            </td>
-            <td>Gig1</td>
-            <td>$88</td>
-            <td>123</td>
-            <td><i className="fa-solid fa-trash"></i></td>
-          </tr>
-
-          <tr>
-            <td>
-              <img src='https://i.pinimg.com/736x/96/be/e1/96bee128e75d3ce04956750517f46a3f.jpg'/>
-            </td>
-            <td>Gig1</td>
-            <td>$88</td>
-            <td>123</td>
-            <td><i className="fa-solid fa-trash"></i></td>
-          </tr>
-          
+            ))
+          }
         </table>
-      </div>
+      </div>)}
     </div>
   )
 }
