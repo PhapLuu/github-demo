@@ -63,7 +63,7 @@ const Navbar = () => {
                             {
                                 currentUser?.isSeller && (
                                     <>
-                                        <Link className='link' to='/gigs'>
+                                        <Link className='link' to='/gigs?search=title'>
                                             <span>Gigs</span>
                                         </Link>
                                         <Link className='link' to='add'>

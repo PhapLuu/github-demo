@@ -140,7 +140,7 @@ const Gig = () => {
                 </div>
               </div>
             )}
-            <Reviews></Reviews>
+            <Reviews gigId={id}></Reviews>
           </div>
           <div className="right">
             <div className="price">

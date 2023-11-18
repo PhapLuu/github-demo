@@ -1,118 +1,52 @@
 import React from "react";
-import './Reviews.scss'
+import "./Reviews.scss";
+import Review from "../review/Review";
+import { useQuery } from "react-query";
+import newRequest from "../../utils/newRequest";
 
-const Reviews = () => {
+const Reviews = ({ gigId }) => {
+  const { isLoading, error, data } = useQuery(
+    "reviews",
+    () =>
+      newRequest.get(`/reviews/${gigId}`).then((res) => {
+        return res.data;
+      }),
+    {
+      enabled: true,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+    }
+  );
+
+  const handleSubmit = (e) => {
+
+  }
+
   return (
     <div className="reviews">
       <h2>Reviews</h2>
-      <div className="item">
-        <div className="user">
-          <img
-            className="pp"
-            src="https://i.pinimg.com/564x/66/f2/97/66f29779c4cd961e9100d555a0a89b34.jpg"
-          />
-          <div className="info">
-            <span>John Doe</span>
-            <div className="country">
-              <i className="fa-solid fa-flag-usa"></i>
-              <span>United States</span>
-            </div>
-          </div>
-        </div>
-        <div className="stars">
-          <i className="fa-solid fa-star"></i>
-
-          <span>5</span>
-        </div>
-        <p>
-          Successful supper judge rise shirt see ranch speak leather pupil
-          weight fellow center balloon cry recently flag bottom somehow gentle
-          strong dust ask thus street given past sit alone nation silk
-          mathematics fireplace such screen arrow hope till scale deeply
-          whenever travel reader image call of laid but dog got although though
-          while single football recent ear national rush motor me natural city
-          camp yellow report broken conversation compass weather fear corn
-        </p>
-        <div className="helpful">
-          <span>Helpful?</span>
-          <i className="fa-regular fa-thumbs-up"></i>
-          <span>Yes</span>
-          <i className="fa-regular fa-thumbs-down"></i>
-          <span>No?</span>
-        </div>
-      </div>
-      <hr />
-      <div className="item">
-        <div className="user">
-          <img
-            className="pp"
-            src="https://i.pinimg.com/564x/66/f2/97/66f29779c4cd961e9100d555a0a89b34.jpg"
-          />
-          <div className="info">
-            <span>John Doe</span>
-            <div className="country">
-              <i className="fa-solid fa-flag-usa"></i>
-              <span>United States</span>
-            </div>
-          </div>
-        </div>
-        <div className="stars">
-          <i className="fa-solid fa-star"></i>
-
-          <span>5</span>
-        </div>
-        <p>
-          Successful supper judge rise shirt see ranch speak leather pupil
-          weight fellow center balloon cry recently flag bottom somehow gentle
-          strong dust ask thus street given past sit alone nation silk
-          mathematics fireplace such screen arrow hope till scale deeply
-          whenever travel reader image call of laid but dog got although though
-          while single football recent ear national rush motor me natural city
-          camp yellow report broken conversation compass weather fear corn
-        </p>
-        <div className="helpful">
-          <span>Helpful?</span>
-          <i className="fa-regular fa-thumbs-up"></i>
-          <span>Yes</span>
-          <i className="fa-regular fa-thumbs-down"></i>
-          <span>No?</span>
-        </div>
-      </div>
-      <hr />
-      <div className="item">
-        <div className="user">
-          <img
-            className="pp"
-            src="https://i.pinimg.com/564x/66/f2/97/66f29779c4cd961e9100d555a0a89b34.jpg"
-          />
-          <div className="info">
-            <span>John Doe</span>
-            <div className="country">
-              <i className="fa-solid fa-flag-usa"></i>
-              <span>United States</span>
-            </div>
-          </div>
-        </div>
-        <div className="stars">
-          <i className="fa-solid fa-star"></i>
-          <span>5</span>
-        </div>
-        <p>
-          Successful supper judge rise shirt see ranch speak leather pupil
-          weight fellow center balloon cry recently flag bottom somehow gentle
-          strong dust ask thus street given past sit alone nation silk
-          mathematics fireplace such screen arrow hope till scale deeply
-          whenever travel reader image call of laid but dog got although though
-          while single football recent ear national rush motor me natural city
-          camp yellow report broken conversation compass weather fear corn
-        </p>
-        <div className="helpful">
-          <span>Helpful?</span>
-          <i className="fa-regular fa-thumbs-up"></i>
-          <span>Yes</span>
-          <i className="fa-regular fa-thumbs-down"></i>
-          <span>No?</span>
-        </div>
+      {isLoading ? (
+        "loading"
+      ) : error ? (
+        "Something went wrong"
+      ) : 
+      data.map((review) => (
+        <Review key={review._id} review = {review}/>
+      ))}
+      <div className="add">
+        <h3>Add a review</h3>
+        <form action="" onSubmit={handleSubmit}>
+          <input type="text" placeholder="write your opinion"/>
+          <select>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+          <button type="submit">Send</button>
+        </form>
       </div>
     </div>
   );
