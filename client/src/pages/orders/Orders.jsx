@@ -1,83 +1,63 @@
-import React from 'react'
-import "./Orders.scss"
-import {Link} from 'react-router-dom'
+import React from "react";
+import "./Orders.scss";
+import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
+import newRequest from "../../utils/newRequest";
 
 const Orders = () => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  const currentUser = {
-    id: 1,
-    username: 'John Doe',
-    isSeller: true,
-  };
+  const { isLoading, error, data } = useQuery(
+    "orders",
+    () =>
+      newRequest.get(`/orders`).then((res) => {
+        return res.data;
+      }),
+    {
+      enabled: true,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+    }
+  );
 
   return (
-    <div className='orders'>
-      <div className='container'>
-        <div className='title'>
-          <h1>Orders</h1>
+    <div className="orders">
+      {isLoading ? (
+        "loading"
+      ) : error ? (
+        "Something went wrong"
+      ) : (
+        <div className="container">
+          <div className="title">
+            <h1>Orders</h1>
+          </div>
+          <table>
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>{currentUser?.isSeller ? "Buyers" : "Seller"}</th>
+              <th>Contact</th>
+            </tr>
+            {data.map((order) => (
+              <tr key={order._id}>
+                <td>
+                  <img src={order.image} />
+                </td>
+                <td>{order.title}</td>
+                <td>${order.price}</td>
+                <td>{currentUser?.isSeller ? {buyerId} : {sellerId}}</td>
+                <td>
+                  <i className="fa-solid fa-envelope"></i>
+                </td>
+              </tr>
+            ))}
+          </table>
         </div>
-        <table>
-          <tr>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>{currentUser?.isSeller ? 'Buyers' : 'Seller'}</th>
-            <th>Contact</th>
-          </tr>
-          <tr>
-            <td>
-              <img src='https://i.pinimg.com/736x/96/be/e1/96bee128e75d3ce04956750517f46a3f.jpg'/>
-            </td>
-            <td>Order1</td>
-            <td>$88</td>
-            <td>123</td>
-            <td><i className="fa-solid fa-envelope"></i></td>
-          </tr>
-
-          <tr>
-            <td>
-              <img src='https://i.pinimg.com/736x/96/be/e1/96bee128e75d3ce04956750517f46a3f.jpg'/>
-            </td>
-            <td>Order2</td>
-            <td>$88</td>
-            <td>123</td>
-            <td><i className="fa-solid fa-envelope"></i></td>
-          </tr>
-
-          <tr>
-            <td>
-              <img src='https://i.pinimg.com/736x/96/be/e1/96bee128e75d3ce04956750517f46a3f.jpg'/>
-            </td>
-            <td>Order3</td>
-            <td>$88</td>
-            <td>123</td>
-            <td><i className="fa-solid fa-envelope"></i></td>
-          </tr>
-
-          <tr>
-            <td>
-              <img src='https://i.pinimg.com/736x/96/be/e1/96bee128e75d3ce04956750517f46a3f.jpg'/>
-            </td>
-            <td>Order4</td>
-            <td>$88</td>
-            <td>123</td>
-            <td><i className="fa-solid fa-envelope"></i></td>
-          </tr>
-
-          <tr>
-            <td>
-              <img src='https://i.pinimg.com/736x/96/be/e1/96bee128e75d3ce04956750517f46a3f.jpg'/>
-            </td>
-            <td>Order5</td>
-            <td>$88</td>
-            <td>123</td>
-            <td><i className="fa-solid fa-envelope"></i></td>
-          </tr>
-          
-        </table>
-      </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Orders
+export default Orders;
