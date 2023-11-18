@@ -23,9 +23,8 @@ const GigCard = ({ item }) => {
       refetchOnReconnect: false,
     }
   );
-  console.log(`/user/${item.userId}`)
   return (
-    <Link className="link" to="/gig/123">
+    <Link className="link" to={`/gig/${item._id}`}>
       <div className="gigCard">
         <img src={item.cover} />
         <div className="info">

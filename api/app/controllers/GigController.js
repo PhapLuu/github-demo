@@ -46,16 +46,27 @@ class GigController{
             next(error)
         }
     }
-    getGig = async(req, res, next) => {
+    // getGig = async(req, res, next) => {
+    //     try {
+    //         const gig = await Gig.findById(req.params.id);
+    //         if(!gig)
+    //             return next(createError(404,"Gig not found"))
+    //         res.status(200).send(gig)
+    //     } catch (error) {
+    //         next(error)
+    //         console.log('alo')
+    //     }
+    // }
+    getGig = async (req, res, next) => {
         try {
-            const gig = Gig.findById(req.params.id);
-            if(!gig)
-                return next(createError(404,"Gig not found"))
-            res.status(200).send(gig)
-        } catch (error) {
-            next(error)
+          const gig = await Gig.findById(req.params.id);
+          if (!gig) 
+            return next(createError(404, "Gig not found!"));
+          res.status(200).send(gig);
+        } catch (err) {
+          next(err);
         }
-    }
+      };
 };
 
 export default new GigController;

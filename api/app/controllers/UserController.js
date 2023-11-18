@@ -14,8 +14,6 @@ class UserController{
     }
     getUser = async(req, res, next) => {
        const user = await User.findById(req.params.id);
-       console.log(req)
-
        res.status(200).send(user)
     }
 
