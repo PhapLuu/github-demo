@@ -1,6 +1,6 @@
 import React from "react";
 import "./Messages.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import newRequest from "../../utils/newRequest";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import moment from "moment";
@@ -25,9 +25,7 @@ const Messages = () => {
   })
 
   const handleRead = (id) => {
-    console.log(id)
     mutation.mutate(id);
-    console.log(data[0])
   };
 
   return (
