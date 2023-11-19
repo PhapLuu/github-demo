@@ -6,7 +6,7 @@ class ConversationController{
         try {
             const conversations = await Conversation.find(
                 req.isSeller ? { sellerId: req.userId} : {buyerId: req.userId}
-            );
+            ).sort({updatedAt: -1});
             res.status(200).send(conversations);
         } catch (error) {
             next(error)
@@ -15,29 +15,14 @@ class ConversationController{
     getConversation = async(req, res) =>{
         try {
             const conversation = await Conversation.findById(req.params.id);
+            if(!conversation)
+                return next(createError(404),'Not found')
             res.status(200).send(conversation);            
         } catch (error) {
             next(error)
         }
     }
     update = async(req, res, next) =>{
-        // try {
-        //     console.log(typeof(req.params.id))
-        //     console.log(req.isSeller)
-        //     const updatedConversation = await Conversation.findOneAndUpdate(
-        //         { id: new ObjectId(req.params.id) },
-        //         {
-        //             $set: {
-        //                 ...(req.isSeller ? {readBySeller: true} : {readByBuyer: true}),
-        //             },
-        //         },
-        //         { new: true }
-        //     );
-        //     console.log(updatedConversation)
-        //     res.status(200).send(updatedConversation);
-        // } catch (error) {
-        //     next(error)
-        // }
         try {
             const updatedConversation = await Conversation.findOneAndUpdate(
               { id: req.params.id},

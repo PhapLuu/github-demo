@@ -14,7 +14,6 @@ const Message = () => {
       return res.data;
     })
   );
-
   const mutation = useMutation({
     mutationFn: (message) => {
       return newRequest.post(`/messages`, message);
@@ -26,6 +25,9 @@ const Message = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!e.target.value){
+      return
+    }
     mutation.mutate({
       conversationId: id,
       desc: e.target[0].value,
@@ -40,7 +42,7 @@ const Message = () => {
           <Link className="link" to="/messages">
             MESSAGES
           </Link>
-          /<Link className="link">JOHN DOE</Link>
+          /<Link className="link">{currentUser.username}</Link>
           /MESSAGE
         </span>
 
