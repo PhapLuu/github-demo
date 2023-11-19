@@ -2,10 +2,10 @@ import Conversation from '../models/Conversation.js'
 import createError from '../../utils/createError.js';
 
 class ConversationController{
-    getConversations = async(req, res) =>{
+    getConversations = async(req, res, next) =>{
         try {
             const conversations = await Conversation.find(
-                req.isSeller ? { sellerId: req.userId} : {buyer: req.userId}
+                req.isSeller ? { sellerId: req.userId} : {buyerId: req.userId}
             );
             res.status(200).send(conversations);
         } catch (error) {
@@ -20,22 +20,40 @@ class ConversationController{
             next(error)
         }
     }
-    update = async(req, res) =>{
+    update = async(req, res, next) =>{
+        // try {
+        //     console.log(typeof(req.params.id))
+        //     console.log(req.isSeller)
+        //     const updatedConversation = await Conversation.findOneAndUpdate(
+        //         { id: new ObjectId(req.params.id) },
+        //         {
+        //             $set: {
+        //                 ...(req.isSeller ? {readBySeller: true} : {readByBuyer: true}),
+        //             },
+        //         },
+        //         { new: true }
+        //     );
+        //     console.log(updatedConversation)
+        //     res.status(200).send(updatedConversation);
+        // } catch (error) {
+        //     next(error)
+        // }
         try {
             const updatedConversation = await Conversation.findOneAndUpdate(
-                { id: req.params.id },
-                {
-                    $set:{
-                        readBySeller: req.isSeller,
-                        readByBuyer: !req.isSeller,
-                    },
+              { id: req.params.id},
+              {
+                $set: {
+                  // readBySeller: true,
+                  // readByBuyer: true,
+                  ...(req.isSeller ? { readBySeller: true } : { readByBuyer: true }),
                 },
-                { new: true }
-            )
+              },
+              { new: true }
+            );
             res.status(200).send(updatedConversation);
-        } catch (error) {
-            next(error)
-        }
+          } catch (err) {
+            next(err);
+          }
     }
     create = async(req, res) =>{
         const conversation = new Conversation({

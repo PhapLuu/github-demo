@@ -5,7 +5,7 @@ import { verifyToken } from '../middleware/jwt.js';
 const router = express.Router()
 
 router.get('/', verifyToken, ConversationController.getConversations);
-router.delete('/single/:id', verifyToken, ConversationController.getConversation);
+router.get('/single/:id', verifyToken, ConversationController.getConversation);
 router.post('/', verifyToken, ConversationController.create);
 router.put('/:id', verifyToken, ConversationController.update);
 

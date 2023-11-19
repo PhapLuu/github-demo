@@ -12,8 +12,8 @@ function route(app) {
     app.use('/api/gigs', gigRouter);
     app.use('/api/orders', orderRouter);
     app.use('/api/reviews',reviewRouter);
-    app.use('./api/conversations',conversationRouter);
-    app.use('./api/messages', messageRouter);
+    app.use('/api/conversations',conversationRouter);
+    app.use('/api/messages', messageRouter);
     
 }
 

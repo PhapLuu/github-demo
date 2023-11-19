@@ -24,7 +24,7 @@ const Register = () => {
         email,
         phoneNumber
       })
-      navigate('login')
+      navigate('/login')
     } catch (error) {
       setError(error.response.data);
     }
