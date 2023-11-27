@@ -4,7 +4,6 @@ import createError from "../../utils/createError.js";
 
 class MessageController {
   create = async (req, res, next) => {
-    console.log(req.body);
     const message = new Message({
       conversationId: req.body.conversationId,
       userId: req.userId,
@@ -29,7 +28,6 @@ class MessageController {
   };
   getMessages = async (req, res, next) => {
     const messages = await Message.find({ conversationId: req.params.id });
-    console.log(messages);
     res.status(200).send(messages);
     try {
     } catch (error) {}

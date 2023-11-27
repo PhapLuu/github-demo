@@ -24,7 +24,7 @@ class GigController{
             if(gig.userId !== req.userId)
                 return next(createError(403,'You can delete only your gig'))
             await Gig.findByIdAndDelete(req.params.id)
-            res.status(200).send('Gig has been deleted') 
+            res.status(200).send('Gig has been deleted')
         } catch (error) {
             next(error)
         }
