@@ -20,10 +20,10 @@ class MessageController {
             lastMessage: req.body.desc,
           },
         },
-            { new: true }
-        );
+        { new: true }
+      );
 
-        res.status(201).send(savedMessage)
+      res.status(201).send(savedMessage);
     } catch (error) {}
   };
   getMessages = async (req, res, next) => {
@@ -31,6 +31,19 @@ class MessageController {
     res.status(200).send(messages);
     try {
     } catch (error) {}
+  };
+  destroy = async (req, res, next) => {
+    try {
+      const message = await Message.findById(req.params.id);
+      if (!message)
+        return res.status(404).json({
+          error: "Message not found",
+        });
+      await Message.findByIdAndDelete(req.params.id)
+      res.status(200).json('Message has been deleted');
+    } catch (error) {
+      next(error)
+    }
   };
 }
 
