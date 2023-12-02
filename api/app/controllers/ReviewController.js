@@ -45,10 +45,14 @@ class ReviewController {
     }
   };
   delete = async (req, res, next) => {
+    const review = await Review.findById(req.params.id)
+    if (!review) return res.status(404).send("Review not found");
     try {
+        await Review.findByIdAndDelete(req.params.id)
+        res.status(200).send('Review has been deleted')
     } catch (error) {
       next(error);
-      
+
     }
   };
 }
