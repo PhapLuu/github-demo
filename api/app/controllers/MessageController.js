@@ -26,6 +26,7 @@ class MessageController {
       res.status(201).send(savedMessage);
     } catch (error) {}
   };
+  
   getMessages = async (req, res, next) => {
     const messages = await Message.find({ conversationId: req.params.id });
     res.status(200).send(messages);
