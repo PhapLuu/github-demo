@@ -3,7 +3,7 @@ import Conversation from "../models/Conversation.js";
 import createError from "../../utils/createError.js";
 
 class MessageController {
-  
+
   create = async (req, res, next) => {
     const message = new Message({
       conversationId: req.body.conversationId,
@@ -34,6 +34,7 @@ class MessageController {
     try {
     } catch (error) {}
   };
+  
   destroy = async (req, res, next) => {
     try {
       const message = await Message.findById(req.params.id);
