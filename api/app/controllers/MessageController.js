@@ -3,6 +3,7 @@ import Conversation from "../models/Conversation.js";
 import createError from "../../utils/createError.js";
 
 class MessageController {
+  
   create = async (req, res, next) => {
     const message = new Message({
       conversationId: req.body.conversationId,
@@ -26,7 +27,7 @@ class MessageController {
       res.status(201).send(savedMessage);
     } catch (error) {}
   };
-  
+
   getMessages = async (req, res, next) => {
     const messages = await Message.find({ conversationId: req.params.id });
     res.status(200).send(messages);
