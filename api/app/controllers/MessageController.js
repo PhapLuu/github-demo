@@ -45,6 +45,8 @@ class MessageController {
       next(error)
     }
   };
+
 }
+
 
 export default new MessageController();
